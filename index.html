@@ -15,9 +15,21 @@
     <form id="task-form">
       <label class="sr-only" for="task-input">Nova tasca</label>
       <input id="task-input" placeholder="Què vols fer?" maxlength="140" required>
+      <label class="sr-only" for="task-priority">Prioritat</label>
+      <select id="task-priority" aria-label="Prioritat de la tasca">
+        <option value="medium">Mitjana</option>
+        <option value="high">Alta</option>
+        <option value="low">Baixa</option>
+      </select>
       <button type="submit">Afegir</button>
     </form>
+    <div class="filters" role="group" aria-label="Filtrar tasques">
+      <button type="button" class="filter active" data-filter="all" aria-pressed="true">Totes</button>
+      <button type="button" class="filter" data-filter="pending" aria-pressed="false">Pendents</button>
+      <button type="button" class="filter" data-filter="done" aria-pressed="false">Completades</button>
+    </div>
     <ul id="task-list" aria-label="Llista de tasques"></ul>
+    <p id="empty-message" class="empty" hidden>No hi ha tasques per mostrar.</p>
     <p class="note">Les tasques es guarden en aquest navegador.</p>
   </main>
 </body>
