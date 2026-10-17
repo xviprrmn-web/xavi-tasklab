@@ -23,10 +23,11 @@
       </select>
       <button type="submit">Afegir</button>
     </form>
-    <div class="filters" role="group" aria-label="Filtrar tasques">
+    <div class="filters" role="group" aria-label="Filtrar i ordenar tasques">
       <button type="button" class="filter active" data-filter="all" aria-pressed="true">Totes</button>
       <button type="button" class="filter" data-filter="pending" aria-pressed="false">Pendents</button>
       <button type="button" class="filter" data-filter="done" aria-pressed="false">Completades</button>
+      <button type="button" class="filter" id="priority-sort" aria-pressed="false">Ordenar per prioritat</button>
     </div>
     <ul id="task-list" aria-label="Llista de tasques"></ul>
     <p id="empty-message" class="empty" hidden>No hi ha tasques per mostrar.</p>

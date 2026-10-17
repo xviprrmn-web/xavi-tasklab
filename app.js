@@ -7,8 +7,10 @@ const list = document.querySelector('#task-list');
 const counter = document.querySelector('#counter');
 const emptyMessage = document.querySelector('#empty-message');
 const filterButtons = document.querySelectorAll('[data-filter]');
+const sortButton = document.querySelector('#priority-sort');
 const priorities = {high: 'Alta', medium: 'Mitjana', low: 'Baixa'};
 let activeFilter = 'all';
+let sortByPriority = false;
 let tasks;
 try {
   const saved = JSON.parse(localStorage.getItem(KEY) || '[]');
@@ -28,6 +30,10 @@ function render() {
     (activeFilter === 'pending' && !task.done) ||
     (activeFilter === 'done' && task.done)
   );
+  if (sortByPriority) {
+    const rank = {high: 0, medium: 1, low: 2};
+    visible.sort((a, b) => rank[priorityOf(a)] - rank[priorityOf(b)]);
+  }
   emptyMessage.hidden = visible.length !== 0;
   for (const task of visible) {
     const li = document.createElement('li');
@@ -73,4 +79,10 @@ filterButtons.forEach(button => button.addEventListener('click', () => {
   });
   render();
 }));
+sortButton.addEventListener('click', () => {
+  sortByPriority = !sortByPriority;
+  sortButton.classList.toggle('active', sortByPriority);
+  sortButton.setAttribute('aria-pressed', String(sortByPriority));
+  render();
+});
 render();
